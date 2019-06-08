@@ -18,3 +18,4 @@ Zatim morate vas domaci da "gurnete" na github:<br/>
 git push origin nazivVaseGrane
 <br/>
 Toliko za pocetak :)
+Malo smo vezbali
