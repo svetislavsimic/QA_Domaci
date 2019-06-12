@@ -30,7 +30,7 @@
 
 def ispravanRegistarski(regBroj):
 
-	ordSlova=[143,166,172,209,230]
+	ordSlova=[262,268,272,352,381]
 	for x in range (65,91):
 		ordSlova.append(x)
 
