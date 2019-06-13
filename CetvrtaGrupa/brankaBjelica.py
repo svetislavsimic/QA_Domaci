@@ -20,6 +20,6 @@ while nastavi=="y":
 
 
 karakter=input("Unesite karakter za filtriranje liste: ")
-
-osobeNovo=[x for x in osobe if ((x[0]).lower()).startswith(karakter.lower())]
+osobeNovo=[x for x in osobe if karakter.lower() in x[0].lower()]
+# osobeNovo=[x for x in osobe if ((x[0]).lower()).startswith(karakter.lower())]
 print("Lista osoba je: {}\nFiltrirana lista je: {}".format(osobe,osobeNovo))
