@@ -34,3 +34,18 @@ class Osoba:
     def __repr__(self):
         return self.ime + " " + self.prezime
         
+class Ucenik(Osoba):
+
+    def __init__ (self, ime, prezime, jmbg, pol, odeljenje):
+        self.odeljenje=odeljenje
+        self.ocene={}
+        super().__init__(ime, prezime, jmbg, pol)
+        
+    def dodajOcenu(self, predmet, ocena):
+        if predmet in self.ocene.keys():
+            self.ocene[predmet].append(ocena)
+        else:
+            self.ocene[predmet]=[ocena]
+
+    
+        
