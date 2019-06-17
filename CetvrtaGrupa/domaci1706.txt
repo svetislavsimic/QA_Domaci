@@ -1,0 +1,5 @@
+U klasu Ucenik dodati metodu initPredmeti u kojoj se uceniku dodeljuje spisak predmeta
+koje on pohadja. 
+Ispraviti metod zakljuciOcene:
+u slucaju da ucenik nema ocenu iz nekog predmeta onda je neocenjen
+u slucaju da ima zakljucenu jedinicu iz nekog predmeta onda je nedovoljan
