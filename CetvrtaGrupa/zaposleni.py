@@ -4,12 +4,12 @@ import datetime
 class Pol(Enum):
     MUSKI=1
     ZENSKI=2
-
+    
 class Predmet(Enum):
     MATEMATIKA=1
     SRPSKI=2
-    HEMIJA=3
-
+    HEMIJA=3    
+    
 class Osoba:
     def __init__(self,ime, prezime, jmbg, pol):
         self.ime=ime
@@ -43,6 +43,7 @@ class Ucenik(Osoba):
        #self.jmbg = jmbg
        #self.pol = pol
        # jer nasledjuje klasu Osoba, nema potrebe da se opet kucaju ove linije
+
        self.odeljenje = odeljenje
        self.ocene={}
        super().__init__(ime, prezime, jmbg, pol)
@@ -52,10 +53,6 @@ def dodajOcenu(self, predmet, ocena):
             self.ocene[predmet].append(ocena)
         else:
             self.ocene[predmet]=[ocena]
-
-def zakljuciOcenu(self, predmet):
-        return sum(self.ocene[predmet])/len(self.ocene[predmet])
-
 
 ucenici=[]
 nastavi="y"
@@ -124,5 +121,3 @@ while nastavi=="y":
             print("Uneli ste nepostojeci pol! ")
 
     plata=input("Unesite iznos plate: ")
-    godineStaza=input("Unesite godine staza: ")
-    godinaPenzija=input("Unesite sa koliko godina idete u penziju: ")
