@@ -43,7 +43,7 @@ class App:
         #filemenu.add_command(label="Exit", command=self.Exit)
         menubar.add_cascade(label="File",  menu=filemenu)
         fontMenu=tk.Menu(menubar, tearoff=1)
-        #fontMenu.add_command(label="IncreaseFont", command=self.IncreaseFont)
+        fontMenu.add_command(label="IncreaseFont", command=self.IncreaseFont)
         #fontMenu.add_command(label="DecreaseFont", command=self.DecreaseFont)
         menubar.add_cascade(label="Font", menu=fontMenu)
         searchMenu= tk.Menu(menubar, tearoff= 0)
@@ -52,8 +52,13 @@ class App:
         menubar.add_cascade(label="Help", menu=helpmenu)
 
         self.win.config(menu=menubar)
-
-
         self.win.mainloop()
+
+
+    def IncreaseFont(self):
+        size = self.customFont['size']
+        self.customFont.configure(size=size + 2)
+
+
 
 app=App()
