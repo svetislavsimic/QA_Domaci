@@ -5,6 +5,7 @@ class Checkbar(ttk.Frame):
    def __init__(self, parent=None, picks=[], side=LEFT, anchor=W):
       Frame.__init__(self, parent)
       self.vars = []
+      self.picks = picks
       for pick in picks:
          var = IntVar()
          chk = ttk.Checkbutton(self, text=pick, variable=var)
@@ -12,6 +13,10 @@ class Checkbar(ttk.Frame):
          self.vars.append(var)
    def state(self):
         return [var.get() for var in self.vars]
+
+   def stateRepresent(self):
+      picked = [p[0] for p in zip(self.picks,self.vars) if p[1].get()==1]
+      return picked
         
 if __name__ == '__main__':
    root = Tk()
@@ -22,7 +27,7 @@ if __name__ == '__main__':
    lng.config(relief=GROOVE, bd=2)
 
    def allstates(): 
-      print(list(lng.state()), list(tgl.state()))
+      print(list(lng.stateRepresent()), list(tgl.stateRepresent()))
    
    #*******
    s = ttk.Style()
