@@ -35,7 +35,7 @@ class App:
 
         # create a pulldown menu, and add it to the menu bar
         filemenu = tk.Menu(menubar, tearoff=0)
-        #filemenu.add_command(label="Open", command=self.Open)
+        filemenu.add_command(label="Open", command=self.Open)
         #filemenu.add_command(label="Save", command=self.Save)
 
         #filemenu.add_command(label="Rename", command=self.Rename)
@@ -63,5 +63,15 @@ class App:
         size = self.customFont['size']
         if size-2>0:
             self.customFont.configure(size=size - 2)
+
+    def Open(self):
+        cwd = os.getcwd()
+        self.filename=filedialog.askopenfilename(initialdir=cwd, title="Select file",
+                                   filetypes=(("txt files", "*.txt"), ("all files", "*.*")))
+        print(self.filename)
+        if not self.filename:
+            return
+        with open(self.filename,mode='r') as f:
+            self.editArea.insert('1.0', f.read())
 
 app=App()
