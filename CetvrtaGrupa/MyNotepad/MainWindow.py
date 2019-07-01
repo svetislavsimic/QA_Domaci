@@ -59,6 +59,9 @@ class App:
         size = self.customFont['size']
         self.customFont.configure(size=size + 2)
 
-
+    def DecreaseFont(self):
+        size = self.customFont['size']
+        if size-2>0:
+            self.customFont.configure(size=size - 2)
 
 app=App()
