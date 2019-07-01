@@ -9,7 +9,7 @@ import shutil
 class App:
     def __init__(self,filename=None):
         self.win = tk.Tk()
-        #self.win.protocol("WM_DELETE_WINDOW", self.Exit)
+        self.win.protocol("WM_DELETE_WINDOW", self.Exit)
         self.customFont = tkFont.Font(
             family="Helvetica", size=14
         )
@@ -40,7 +40,7 @@ class App:
 
         #filemenu.add_command(label="Rename", command=self.Rename)
         filemenu.add_separator()
-        #filemenu.add_command(label="Exit", command=self.Exit)
+        filemenu.add_command(label="Exit", command=self.Exit)
         menubar.add_cascade(label="File",  menu=filemenu)
         fontMenu=tk.Menu(menubar, tearoff=1)
         fontMenu.add_command(label="IncreaseFont", command=self.IncreaseFont)
@@ -83,5 +83,16 @@ class App:
         with f:
             text2save = str(self.editArea.get(1.0, "end"))  # starts from `1.0`, not `0.0`
             f.write(text2save)
+
+    def Exit(self):
+        result = messagebox.askyesnocancel(title="Python",message="Would you like to save the data?")
+        print(result)
+        if result:
+            self.Save()
+            self.win.destroy()
+        elif result==None:
+            pass
+        else:
+            self.win.destroy()
 
 app=App()
