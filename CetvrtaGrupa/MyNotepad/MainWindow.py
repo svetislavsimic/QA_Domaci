@@ -32,7 +32,7 @@ class App:
 
         menubar = tk.Menu(self.win)
         helpmenu = tk.Menu(menubar, tearoff=0)
-        #helpmenu.add_command(label="?", command=self.Help)
+        helpmenu.add_command(label="?", command=self.Help)
 
         # create a pulldown menu, and add it to the menu bar
         filemenu = tk.Menu(menubar, tearoff=0)
@@ -132,6 +132,10 @@ class App:
         self.editArea.insert(tk.END,textInArea)
         self.query.set("")
         self.query2.set("")
+
+    def Help(self):
+        help = messagebox.showinfo("Help","Ovo je aplikacija koju je radila cetvrta grupa")
+
 
 
 
