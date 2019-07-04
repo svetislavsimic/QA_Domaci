@@ -54,6 +54,7 @@ class App:
         menubar.add_cascade(label="Help", menu=helpmenu)
 
         self.win.config(menu=menubar)
+        self.InitConfig()
         self.win.mainloop()
 
 
@@ -80,11 +81,19 @@ class App:
         f = filedialog.asksaveasfile(mode='w', defaultextension=".txt")
         if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
             return
-        print(f)
+        print(f.name)
         print(type(f))
         with f:
             text2save = str(self.editArea.get(1.0, "end"))  # starts from `1.0`, not `0.0`
             f.write(text2save)
+            cwd = os.getcwd()
+            configFilePath = os.path.join(cwd, "config.txt")
+            try:
+                with open(configFilePath, mode='w') as cf:
+                    cf.write(f.name)
+            except FileNotFoundError:
+                return
+
 
     def Exit(self):
         result = messagebox.askyesnocancel(title="Python",message="Would you like to save the data?")
@@ -134,9 +143,23 @@ class App:
         self.query2.set("")
 
     def Help(self):
-        help = messagebox.showinfo("Help","Ovo je aplikacija koju je radila cetvrta grupa")
+        messagebox.showinfo("Help","Ovo je aplikacija koju je radila cetvrta grupa")
 
+    def InitConfig(self):
+        cwd = os.getcwd()
+        configFilePath = os.path.join(cwd,"config.txt")
+        try:
+            with open(configFilePath,mode='r') as f:
+                self.filename = f.read()
+        except FileNotFoundError:
+            #TO-DO za domaci uradite da ako nema config.txt fajla da se napravi
+            return
+        try:
+            with open(self.filename, mode='r') as f:
+                self.editArea.insert('1.0', f.read())
 
+        except:
+            pass
 
 
 
