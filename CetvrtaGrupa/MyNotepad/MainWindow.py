@@ -15,6 +15,7 @@ class App:
         )
         self.filename=filename
         self.query = tk.StringVar()
+        self.query2 = tk.StringVar()
         frame1 = tk.Frame(
             master=self.win,
              background = 'green'
@@ -48,6 +49,7 @@ class App:
         menubar.add_cascade(label="Font", menu=fontMenu)
         searchMenu= tk.Menu(menubar, tearoff= 0)
         searchMenu.add_command(label="Count", command = self.count)
+        searchMenu.add_command(label="Replace", command=self.replace)
         menubar.add_cascade(label="Search", menu=searchMenu )
         menubar.add_cascade(label="Help", menu=helpmenu)
 
@@ -112,5 +114,26 @@ class App:
         messageResult.title("Rezultat")
         tk.Label(messageResult, text="U tekstu se nalazi {} puta {}".format(c,unetiTekst)).pack()
         tk.Button(messageResult, text="OK", command=messageResult.destroy).pack()
+
+    def replace(self):
+        self.replaceWindow = tk.Toplevel()
+        tk.Label(self.replaceWindow,text="Unesite izraz koji se menja: ").grid(row=0, column=0)
+        tk.Entry(self.replaceWindow, textvariable = self.query).grid(row=0, column=1)
+        tk.Label(self.replaceWindow,text="Unesite izraz kojim se menja: ").grid(row=1, column=0)
+        tk.Entry(self.replaceWindow, textvariable = self.query2).grid(row=1, column=1)
+        tk.Button(self.replaceWindow,text="REPLACE", command = self.DestroyReplace).grid(row=1, column=2)
+
+
+    def DestroyReplace(self):
+        self.replaceWindow.destroy()
+        textInArea = str(self.editArea.get(1.0, "end"))
+        textInArea = textInArea.replace(self.query.get(),self.query2.get())
+        self.editArea.delete(1.0,"end")
+        self.editArea.insert(tk.END,textInArea)
+        self.query.set("")
+        self.query2.set("")
+
+
+
 
 app=App()
