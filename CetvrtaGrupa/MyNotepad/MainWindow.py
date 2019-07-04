@@ -17,7 +17,7 @@ class App:
         self.query = tk.StringVar()
         frame1 = tk.Frame(
             master=self.win,
-             background = 'red'
+             background = 'green'
         )
         frame1.pack(fill='both', expand='yes')
         self.editArea = tkst.ScrolledText(
@@ -26,7 +26,7 @@ class App:
             font=self.customFont,
         )
 
-        self.editArea.pack(padx=3, pady=3, fill=tk.BOTH, expand=True)
+        self.editArea.pack(padx=1, pady=1, fill=tk.BOTH, expand=True)
         self.editArea.focus_set()
 
         menubar = tk.Menu(self.win)
@@ -47,7 +47,7 @@ class App:
         fontMenu.add_command(label="DecreaseFont", command=self.DecreaseFont)
         menubar.add_cascade(label="Font", menu=fontMenu)
         searchMenu= tk.Menu(menubar, tearoff= 0)
-        #searchMenu.add_command(label="Count", command = self.count)
+        searchMenu.add_command(label="Count", command = self.count)
         menubar.add_cascade(label="Search", menu=searchMenu )
         menubar.add_cascade(label="Help", menu=helpmenu)
 
@@ -94,5 +94,23 @@ class App:
             pass
         else:
             self.win.destroy()
+
+    def count(self):
+        self.result = tk.Toplevel()
+        self.result.title('Count')
+        self.result.geometry('400x150')
+        tk.Label(self.result, text="Unesite izraz za pretragu").pack()
+        tk.Entry(self.result, textvariable=self.query).pack()
+        tk.Button(self.result, text="OK", command=self.DestroyResult).pack()
+
+    def DestroyResult(self):
+        self.result.destroy()
+        unetiTekst=self.query.get()
+        messageResult=tk.Toplevel()
+        textInArea = str(self.editArea.get(1.0, "end"))
+        c = textInArea.count(unetiTekst)
+        messageResult.title("Rezultat")
+        tk.Label(messageResult, text="U tekstu se nalazi {} puta {}".format(c,unetiTekst)).pack()
+        tk.Button(messageResult, text="OK", command=messageResult.destroy).pack()
 
 app=App()
